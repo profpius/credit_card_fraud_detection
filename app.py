@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import pickle
+import joblib
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
@@ -288,8 +288,7 @@ html, body, [class*="css"] {
 @st.cache_resource
 def load_pipeline():
     try:
-        with open("fraud_pipeline.pkl", "rb") as f:
-            pipeline = pickle.load(f)
+        pipeline = joblib.load("fraud_pipeline.pkl")
         return pipeline
     except FileNotFoundError:
         st.error("❌ `fraud_pipeline.pkl` not found. Make sure it's in the same directory as `app.py`.")
