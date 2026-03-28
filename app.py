@@ -508,8 +508,8 @@ with tab1:
         try:
             feature_names = pipeline.named_steps['scaler'].feature_names_in_
             input_df = pd.DataFrame(features, columns=feature_names)
-            prediction  = pipeline.predict(features)[0]
-            probability = pipeline.predict_proba(features)[0][1]
+            prediction  = pipeline.predict(input_df)[0]
+            probability = pipeline.predict_proba(input_df)[0][1]
         except Exception as e:
             st.error(f"Prediction failed: {e}")
             st.stop()
