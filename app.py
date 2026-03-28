@@ -300,7 +300,7 @@ def load_pipeline():
 pipeline = load_pipeline()
 
 # Feature column names (standard Kaggle fraud dataset)
-FEATURE_COLS = ["time"] + [f"v{i}" for i in range(1, 29)] + ["amount"]
+FEATURE_COLS = ["time_scaled"] + [f"v{i}" for i in range(1, 29)] + ["amount_scaled"]
 
 
 # ── Hero Section ───────────────────────────────────────────────────────────────
@@ -506,8 +506,7 @@ with tab1:
 
 
         try:
-            feature_names = pipeline.named_steps['scaler'].feature_names_in_
-            input_df = pd.DataFrame(features, columns=feature_names)
+            input_df = pd.DataFrame(features, columns=FEATURE_COLS)
             prediction  = pipeline.predict(input_df)[0]
             probability = pipeline.predict_proba(input_df)[0][1]
         except Exception as e:
@@ -596,7 +595,7 @@ with tab1:
                 # Transform features through all steps except the last (model)
                 steps_except_last = list(pipeline.named_steps.keys())[:-1]
                 if steps_except_last:
-                    transformed = features.copy()
+                    transformed = input_df.copy()
                     for step_name in steps_except_last:
                         transformed = pipeline.named_steps[step_name].transform(transformed)
                     features_for_shap = transformed
