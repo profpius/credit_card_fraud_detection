@@ -328,7 +328,7 @@ st.markdown("""
         <span class="badge">XGBoost</span>
         <span class="badge">ROC-AUC 0.9725</span>
         <span class="badge">284,807 Transactions</span>
-        <span class="badge">SMOTE + Threshold Tuning</span>
+        <span class="badge">scale_pos_weight + Threshold Tuning</span>
         <span class="badge">SHAP Explainability</span>
     </div>
 </div>
@@ -370,7 +370,7 @@ with st.sidebar:
     st.markdown("""
     <div style='background:#0f1d32;border:1px solid #1e3a5f;border-radius:10px;padding:14px;font-size:0.82rem;color:#94a3b8;line-height:1.8'>
     🔹 Algorithm: <b style='color:#60a5fa'>XGBoost</b><br>
-    🔹 Imbalance: <b style='color:#60a5fa'>SMOTE</b><br>
+    🔹 Imbalance: <b style='color:#60a5fa'>scale_pos_weight</b><br>
     🔹 Tuning: <b style='color:#60a5fa'>Threshold Optimization</b><br>
     🔹 Explainability: <b style='color:#60a5fa'>SHAP</b><br>
     🔹 Pipeline: <b style='color:#60a5fa'>Sklearn + XGBoost</b>
