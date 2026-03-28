@@ -504,11 +504,10 @@ with tab1:
             v21, v22, v23, v24, v25, v26, v27, v28, amount
         ]])
 
-        input_df = pd.DataFrame(features, columns=FEATURE_COLS)
 
         try:
-            prediction  = pipeline.predict(input_df)[0]
-            probability = pipeline.predict_proba(input_df)[0][1]
+            prediction  = pipeline.predict(features)[0]
+            probability = pipeline.predict_proba(features)[0][1]
         except Exception as e:
             st.error(f"Prediction failed: {e}")
             st.stop()
@@ -595,7 +594,7 @@ with tab1:
                 # Transform features through all steps except the last (model)
                 steps_except_last = list(pipeline.named_steps.keys())[:-1]
                 if steps_except_last:
-                    transformed = input_df.copy()
+                    transformed = features.copy()
                     for step_name in steps_except_last:
                         transformed = pipeline.named_steps[step_name].transform(transformed)
                     features_for_shap = transformed
